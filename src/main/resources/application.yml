@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: flightPrice
+  cache:
+    type: caffeine
+    caffeine:
+      spec: maximumSize=1000,expireAfterWrite=1m
+  sql:
+    init:
+      mode: always 
+  datasource:
+    url: jdbc:h2:mem:flightdb
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+server:
+  port: 8080
+logging:
+  level:
+    org:
+      springframework: INFO
+    com:
+      mhdi: DEBUG
+  file:
+    name: logs/flight-price-system.log
+

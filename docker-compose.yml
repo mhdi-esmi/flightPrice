@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_APPLICATION_NAME: flightPrice
+      SPRING_CACHE_TYPE: caffeine
+      SPRING_CACHE_CAFFEINE_SPEC: maximumSize=1000,expireAfterWrite=1m
+      SPRING_SQL_INIT_MODE: always
+      SPRING_DATASOURCE_URL: jdbc:h2:mem:flightdb
+      SPRING_JPA_HIBERNATE_DDL_AUTO: create
+      SPRING_JPA_SHOW_SQL: "true"
+      SPRING_H2_CONSOLE_ENABLED: "true"
+      SPRING_H2_CONSOLE_PATH: /h2-console
+      SERVER_PORT: 8080
+      LOGGING_LEVEL_ORG_SPRINGFRAMEWORK: INFO
+      LOGGING_LEVEL_COM_MHDI: DEBUG
+      LOGGING_FILE_NAME: logs/flight-price-system.log
